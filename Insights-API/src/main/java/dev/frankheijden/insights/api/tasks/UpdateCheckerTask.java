@@ -16,6 +16,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.net.URI;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
@@ -28,7 +29,8 @@ public class UpdateCheckerTask extends InsightsAsyncTask {
     static {
         URL githubLink = null;
         try {
-            githubLink = new URL("https://api.github.com/repos/InsightsPlugin/Insights/releases/latest");
+            URI uri = URI.create("https://api.github.com/repos/InsightsPlugin/Insights/releases/latest");
+            githubLink = uri.toURL();
         } catch (MalformedURLException ex) {
             ex.printStackTrace();
         }
